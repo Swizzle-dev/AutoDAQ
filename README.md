@@ -12,9 +12,9 @@ function getLC() {
     local remote_user="nasim_admin"
     local remote_host="lbc.internal.snolab.ca"
     local remote_dir="wavedumpoutput"
-    local local_dir="/root/software/WaveDumpOutput"
-    local analysis_executable="/root/software/RadonCountCode/AlphaCounting_v3.exe"
-    local wave_dump_output_dir="/root/software/WaveDumpOutput"
+    local local_dir="/your/path/here/wavedumpoutput"
+    local analysis_executable="/your/path/here/RadonCountCode/AlphaCounting_v3.exe"
+    local wave_dump_output_dir="/your/path/here/wavedumpoutput"
     local password="password"
 	
 	
@@ -31,7 +31,7 @@ function getLC() {
 }
 ```
 
-2. Replace local_dir with your local wavedumpoutput path, this is where wavedump files from the DAQ will be created.
+2. Replace local_dir and wave_dump_output_dir with your local wavedumpoutput path, this is where wavedump files from the DAQ will be created and where wavedump files will be pulled from for analysis.
 3. Replace analysis_executable with the path where the AlphaCounting_v3.exe file is stored. This file takes care of the analysis of the PMT data
 4. Change the password with the nasim_admin@lbc.internal.snolab.ca password
 5. Confirm that it works by executing :
