@@ -5,6 +5,7 @@ AutoDAQ is a set of linux terminal commands meant to be used in conjunction with
 ## Installation 
 
 1.Copy and paste the following code at the end of the /home/[username]/.bashrc file
+
 ```
 function getLC() {
     local channel=$1
@@ -29,4 +30,14 @@ function getLC() {
     "$analysis_executable" "$local_dir/$recent_file" "$wave_dump_output_dir"
 }
 ```
-2. 
+
+2. Replace local_dir with your local wavedumpoutput path, this is where wavedump files from the DAQ will be created.
+3. Replace analysis_executable with the path where the AlphaCounting_v3.exe file is stored. This file takes care of the analysis of the PMT data
+4. Change the password with the nasim_admin@lbc.internal.snolab.ca password
+5. Confirm that it works by executing :
+
+```
+getLC 0
+```
+This obtains the most recent wavedump file from channel 0.
+
