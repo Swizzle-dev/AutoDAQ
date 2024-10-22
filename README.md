@@ -3,6 +3,45 @@ AutoDAQ is a set of linux terminal commands meant to be used in conjunction with
 
 
 ## Installation 
+NOT DONE
+### Science2 Install
+1. ssh into science2 using the following command :
+```
+ssh [user]@science2.snolab.ca
+```
+2. In your directory, execute the command :
+```
+mkdir wavedumpoutput
+```
+1.Copy and paste the following code at the end of the /users/[username]/.bashrc file
+
+```
+function getLC() {
+    local channel=$1
+    local remote_user="nasim_admin"
+    local remote_host="lbc.internal.snolab.ca"
+    local remote_user_science2="[user]"
+    local remote_host_science2="science2.snolab.ca"
+    local remote_dir="wavedumpoutput"
+    local local_dir="/users/[user]/wavedumpoutput"
+    local analysis_executable="/users/nasim/RadonCountCode/AlphaCounting_v3.exe"
+    local wave_dump_output_dir="/your/path/here/wavedumpoutput"
+    local daq_password="[DAQ password]"
+    local science2_password="[science2 password]"
+	
+	
+    # Use sshpass to SSH into the remote host and find the most recent file for the given channel
+    local recent_file=$(sshpass -p "$daq_password" ssh "$remote_user@$remote_host" "cd $remote_dir && ls -t wave$channel*.txt | head -n 1")
+	
+    # Copy the most recent file to the local directory
+    sshpass -p "$password" scp "$remote_user@$remote_host:$remote_dir/$recent_file" "$local_dir"
+	
+    echo "From : "$remote_user@$remote_host
+    echo "You are currently analyzing : "$recent_file
+    # Execute the C++ analysis executable on the copied file
+    "$analysis_executable" "$local_dir/$recent_file" "$wave_dump_output_dir"
+}
+```
 
 1.Copy and paste the following code at the end of the /home/[username]/.bashrc file
 
@@ -30,7 +69,7 @@ function getLC() {
     "$analysis_executable" "$local_dir/$recent_file" "$wave_dump_output_dir"
 }
 ```
-
+### Local Install
 2. Replace local_dir and wave_dump_output_dir with your local wavedumpoutput path, this is where wavedump files from the DAQ will be created and where wavedump files will be pulled from for analysis.
 3. Replace analysis_executable with the path where the AlphaCounting_v3.exe file is stored. This file takes care of the analysis of the PMT data
 4. Change the password with the nasim_admin@lbc.internal.snolab.ca password
