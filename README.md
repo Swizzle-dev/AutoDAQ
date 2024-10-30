@@ -9,11 +9,12 @@ NOT DONE
 ```
 ssh [user]@science2.snolab.ca
 ```
-2. In your directory, execute the command :
+2. In your directory, execute the following command and exit ssh connection
 ```
 mkdir wavedumpoutput
+exit
 ```
-
+3. 
 3.Copy and paste the following code at the end of the /home/[username]/.bashrc file
 
 ```
