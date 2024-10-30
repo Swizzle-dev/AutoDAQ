@@ -19,7 +19,7 @@ mkdir wavedumpoutput
 ```
 function getLC() {
     # Input parameters
-	local channel=$1 # Channel number
+    local channel=$1 # Channel number
     local year=$2 # Year(YYYY) of wavedump file
     local month=$3 # Month(MM) of wavedump file
     local day=$4 # Day(DD) of wavedump file
