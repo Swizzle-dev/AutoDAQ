@@ -89,7 +89,11 @@ The command is used with the following syntax :
 getLC <CHANNEL> <YEAR(YYYY)> <MONTH(MM)> <DAY(DD)> <ORDER>
 ```
 CHANNEL : PMT channel from which the data was collected (Required)
+
 YEAR(YYYY) : The year during which the data was collected in 4 digit format (If date(year/month/day) is left blank the most recent file from the selected channel will be chosen)
+
 MONTH(MM) : The month during which the data was collected in 2 digit format (If date(year/month/day) is left blank the most recent file from the selected channel will be chosen)
+
 DAY(DD) : The day during which the data was collected in 2 digit format (If date(year/month/day) is left blank the most recent file from the selected channel will be chosen)
+
 ORDER : The order of the desired file if more than one were created in one day. (If left blank, the most recent one will be chosen)
