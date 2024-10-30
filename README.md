@@ -3,8 +3,7 @@ AutoDAQ is a set of linux terminal commands meant to be used in conjunction with
 
 
 ## Installation 
-NOT DONE
-### Science2 Install
+
 1. ssh into science2 using the following command :
 ```
 ssh [user]@science2.snolab.ca
