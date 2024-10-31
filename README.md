@@ -13,7 +13,6 @@ ssh <USERNAME>@science2.snolab.ca
 mkdir wavedumpoutput
 exit
 ```
-3. 
 3.Copy and paste the following code at the end of the /home/[username]/.bashrc file
 
 ```
@@ -80,7 +79,7 @@ This obtains the most recent wavedump file from channel 0.
 ```
 getLC 5 2022 10 11 1
 ```
-This obtains the most recent wavedump file from channel 0.
+This obtains the last wavedump file created on the 11th of October 2022 from channel 5. 
 
 ## Usage
 
@@ -96,4 +95,4 @@ MONTH(MM) : The month during which the data was collected in 2 digit format (If 
 
 DAY(DD) : The day during which the data was collected in 2 digit format (If date(year/month/day) is left blank the most recent file from the selected channel will be chosen)
 
-ORDER : The order of the desired file if more than one were created in one day. (If left blank, the most recent one will be chosen)
+ORDER : The order of the desired file if more than one were created in one day. (1 = Most Recent, 2=second most recent... If left blank, the most recent one will be chosen)
