@@ -13,8 +13,7 @@ ssh <USERNAME>@science2.snolab.ca
 mkdir wavedumpoutput
 exit
 ```
-3.Copy and paste the following code at the end of the /home/[username]/.bashrc file
-
+3. Copy and paste the following code at the end of the /home/[username]/.bashrc file
 ```
 function getLC() {
     # Input parameters
@@ -66,10 +65,12 @@ function getLC() {
 	echo "Analyzed File : "$recent_file
 }
 ```
+
 4. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
 5. Save the /home/[username]/.bashrc file
 6. Exit WSL and start a new instance
 8. Try the examples below to ensure everything was properly installed
+
 Examples
 ```
 getLC 0
