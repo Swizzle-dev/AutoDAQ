@@ -4,6 +4,11 @@ AutoDAQ is a set of linux terminal commands meant to be used in conjunction with
 
 ## Installation 
 
+1. Install sshpass
+```
+sudo apt install sshpass
+```
+
 1. ssh into science2 using the following command :
 ```
 ssh <USERNAME>@science2.snolab.ca
