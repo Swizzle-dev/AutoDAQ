@@ -9,16 +9,16 @@ AutoDAQ is a set of linux terminal commands meant to be used in conjunction with
 sudo apt install sshpass
 ```
 
-1. ssh into science2 using the following command :
+2. ssh into science2 using the following command :
 ```
 ssh <USERNAME>@science2.snolab.ca
 ```
-2. In your directory, execute the following command and exit ssh connection
+3. In your directory, execute the following command and exit ssh connection
 ```
 mkdir wavedumpoutput
 exit
 ```
-3. Copy and paste the following code at the end of the /home/[username]/.bashrc file
+4. Copy and paste the following code at the end of the /home/[username]/.bashrc file
 ```
 function getLC() {
     # Input parameters
@@ -75,10 +75,10 @@ function getLC() {
 }
 ```
 
-4. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
-5. Save the /home/[username]/.bashrc file
-6. Exit WSL and start a new instance
-7. Try the examples below to ensure everything was properly installed
+5. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
+6. Save the /home/[username]/.bashrc file
+7. Exit WSL and start a new instance
+8. Try the examples below to ensure everything was properly installed
 
 Examples
 ```
