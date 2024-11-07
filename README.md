@@ -1,7 +1,6 @@
 # AutoDAQ
 AutoDAQ is a set of linux terminal commands meant to be used in conjunction with a multichannel CAEN digitizer PMT setup. It is an an add-on to the wavedump code to perform data analysis specifically for Lucas Cell based scintillation measurement as a one-liner command. 
 
-
 ## Installation 
 
 1. Install sshpass
@@ -75,7 +74,7 @@ function getLC() {
 }
 ```
 
-5. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
+5. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory on your computer. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
 6. Save the /home/[username]/.bashrc file
 7. Exit WSL and start a new instance
 8. Try the examples below to ensure everything was properly installed
