@@ -68,13 +68,17 @@ function getLC() {
     # Execute the C++ analysis executable on the copied file on science2
     sshpass -p "$target_password" ssh "$target_user@$target_host" "source /usr/local/root_versions/root-6.08.06/bin/thisroot.sh;$analysis_executable $target_dir/$recent_file $wave_dump_output_dir; exit"
 	echo "Analyzed File : "$recent_file
+
+    # Kill active jobs
+    echo "Killing active jobs on $target_user@$target_host"
+    sshpass -p "$target_password" ssh "$target_user@$target_host" "pkill -U $target_user"
 }
 ```
 
 4. Replace [USERNAME], [PASSWORD] with your science2 login credentials and <LOCAL_PATH> with your preferred intermediate directory. This intermediate directory serves to circumvent troublesome authorization issues that arise from interhost direct ssh file transfer.
 5. Save the /home/[username]/.bashrc file
 6. Exit WSL and start a new instance
-8. Try the examples below to ensure everything was properly installed
+7. Try the examples below to ensure everything was properly installed
 
 Examples
 ```
