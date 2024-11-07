@@ -18,7 +18,7 @@ ssh <USERNAME>@science2.snolab.ca
 mkdir wavedumpoutput
 exit
 ```
-4. Copy and paste the following code at the end of the /home/[username]/.bashrc file
+4. Copy and paste the following code or the contents of getLC_source.txt at the end of the /home/[username]/.bashrc file
 ```
 function getLC() {
     # Input parameters
@@ -29,9 +29,9 @@ function getLC() {
     local order=$5 # Order of the most recent file (1 being most recent)
 
     # User credentials and directories
-    local target_user="<USERNAME>" # Username for science2
-    local target_password="<PASSWORD>"  # Password for science2
-    local local_dir="<LOCAL_PATH>" # Path on local machine
+    local target_user="[USERNAME]" # Username for science2
+    local target_password="[PASSWORD]"  # Password for science2
+    local local_dir="[LOCAL_PATH]" # Path on local machine
 
     # Remote server credentials and directories
     local remote_user="nasim_admin" # Remote server username
