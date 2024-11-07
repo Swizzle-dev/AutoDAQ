@@ -1,0 +1,53 @@
+function getLC() {
+    # Input parameters
+	local channel=$1 # Channel number
+    local year=$2 # Year(YYYY) of wavedump file
+    local month=$3 # Month(MM) of wavedump file
+    local day=$4 # Day(DD) of wavedump file
+    local order=$5 # Order of the most recent file (1 being most recent)
+
+    # User credentials and directories
+    local target_user="[USERNAME]" # Username for science2
+    local target_password="[PASSWORD]"  # Password for science2
+    local local_dir="[LOCAL PATH]" # Path on local machine
+
+    # Remote server credentials and directories
+    local remote_user="nasim_admin" # Remote server username
+    local remote_host="lbc.internal.snolab.ca" # Remote server hostname
+    local remote_dir="wavedumpoutput" # Path on remote server
+    local target_host="science2.snolab.ca" # Science2 hostname
+    local target_dir="/users/${target_user}/wavedumpoutput"  # Path on science2
+    local analysis_executable="/users/nasim/RadonCountCode/AlphaCounting_v3.exe"  # Counting executable path on science2
+    local wave_dump_output_dir="/users/${target_user}/wavedumpoutput"  # Path on science2
+    local remote_password="Radon226"  # Password for lbc.internal.snolab.ca
+    
+    # Check if day, month, and year are provided
+    if [[ -n $day && -n $month && -n $year ]]; then
+        echo "Searching for files on $year/$month/$day"
+        local recent_file=$(sshpass -p "$remote_password" ssh "$remote_user@$remote_host" "cd $remote_dir && ls -t wave$channel$year-$month-$day*.txt | head -n 1")
+    # Check if order is provided
+    elif [[ -n $order ]]; then
+        echo "Searching for $order most recent files"
+        local recent_file=$(sshpass -p "$remote_password" ssh "$remote_user@$remote_host" "cd $remote_dir && ls -t wave$channel$year-$month-$day*.txt | head -n $order")
+    else
+        echo "Searching for files without date filter"
+        local recent_file=$(sshpass -p "$remote_password" ssh "$remote_user@$remote_host" "cd $remote_dir && ls -t wave$channel*.txt | head -n 1")
+        # Existing logic to search files
+    fi
+
+    # Use sshpass to SSH into the remote host and find the most recent file for the given channel
+	echo "Recent File : "$recent_file
+    # Copy the most recent file from the remote host to the local directory
+    sshpass -p "$remote_password" scp "$remote_user@$remote_host:$remote_dir/$recent_file" "$local_dir"
+	echo "Copied File(lbc.internal->local) : "$recent_file" to "$local_dir
+    # Copy the file from the local directory to the target remote directory on science2
+    sshpass -p "$target_password" scp "$local_dir/$recent_file" "$target_user@$target_host:$target_dir"
+	echo "Copied File(local->science2) : "$recent_file" to "$target_dir 
+    # Execute the C++ analysis executable on the copied file on science2
+    sshpass -p "$target_password" ssh "$target_user@$target_host" "source /usr/local/root_versions/root-6.08.06/bin/thisroot.sh;$analysis_executable $target_dir/$recent_file $wave_dump_output_dir; exit"
+	echo "Analyzed File : "$recent_file
+
+    # Kill active jobs
+    echo "Killing active jobs on $target_user@$target_host"
+    sshpass -p "$target_password" ssh "$target_user@$target_host" "pkill -U $target_user"
+}
